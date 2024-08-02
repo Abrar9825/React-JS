@@ -1,0 +1,5 @@
+npm create vite@latest
+go react
+go javascript
+npm install
+npm run dev
