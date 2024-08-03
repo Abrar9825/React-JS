@@ -2,6 +2,7 @@ import './App.css';
 import ClassBased from './Component/ClassBased';
 import FunctionolComponent from './Component/FunctinolComponent'
 import ProductList from './Component/products/index';
+import Users from './Component/users';
 
 const dummyData = ['a', 'b', 'c', 'd']
 
@@ -12,7 +13,8 @@ function App() {
       {/* <ClassBased /> */}
       {/* <FunctionolComponent /> */}
 
-      <ProductList listofData={dummyData} name="Abrar Shaikh" age="21" />{/* argument is called props in function */}
+      {/* <ProductList listofData={dummyData} name="Abrar Shaikh" age="21" />argument is called props in function */}
+      <Users/>
     </div>
   );
 }
