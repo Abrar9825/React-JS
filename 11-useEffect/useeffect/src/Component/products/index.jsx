@@ -12,6 +12,7 @@ function ProductList({ name, age, listofData }) {
     const handleToggleText = () => {
         setFalg(!flag)
     }
+
     useEffect(() => {
         setFalg(!flag)
         console.log("run only once");
@@ -21,10 +22,13 @@ function ProductList({ name, age, listofData }) {
         }
 
     }, [])
+
+
     useEffect(() => {
         if (count === 10) setChangeStyle(true)
 
     }, [count])
+
     console.log(changeStyle);
 
     function handleIncressCount() {

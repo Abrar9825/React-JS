@@ -26,13 +26,15 @@ class ClassBased extends Component {
             showText: !this.state.showText,
             changeColor: !this.state.changeColor
         });
+        
+        handleCount = () => {
+            this.setState({
+                ...this.state,
+                count: this.state.count + 1
+            })
+        }
     }
-    handleCount = () => {
-        this.setState({
-            ...this.state,
-            count: this.state.count + 1
-        })
-    }
+
     componentDidUpdate(prevprops, prevstate) {
         console.log(prevstate, this.state);
         if (prevstate && prevstate.count !== this.state.count && this.state.count === 10) {
@@ -43,6 +45,7 @@ class ClassBased extends Component {
         }
 
     }
+
     componentWillUnmount() {
         console.log("comonent is getting destroy or unmonunt");
         

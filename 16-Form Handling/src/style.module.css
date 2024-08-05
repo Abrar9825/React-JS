@@ -1,0 +1,14 @@
+.title {
+    font-size: 30px;
+    color: red;
+}
+
+.todoListWrapper {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mainWrapper {
+    padding: 50px;
+}
