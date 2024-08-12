@@ -1,0 +1,3 @@
+npm i react-route-dom
+
+First thing you're using a router Is wrap a app Component in browser router It is a mandatory. 
