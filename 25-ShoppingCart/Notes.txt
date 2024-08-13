@@ -1,0 +1,23 @@
+npm create vite@latest 25-ShoppingCart -- --template react
+
+cd 25-ShoppingCart
+
+npm i 
+
+code .
+
+--> now all commend in terminal of vs code
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+
+-->paste in tailwind.config.js in content array
+ "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+
+
+-->paste this in top of index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
