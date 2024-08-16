@@ -4,7 +4,7 @@
 // consume the context using use context
 
 import { createContext, useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { json, Navigate, useNavigate } from "react-router-dom";
 
 export const ShoppingCartContext = createContext(null)
 
@@ -40,8 +40,11 @@ function ShoppingCartProvider({ children }) {
             })
         }
         else {
-            console.log('yahooo');
-
+            cpExsitingCartItems[findIndexOfCurrentItem] = {
+                ...cpExsitingCartItems[findIndexOfCurrentItem],
+                quantity: cpExsitingCartItems[findIndexOfCurrentItem].quantity + 1,
+                totalPrice: (cpExsitingCartItems[findIndexOfCurrentItem].quantity + 1) * cpExsitingCartItems[findIndexOfCurrentItem].price
+            }
         }
         console.log(cpExsitingCartItems);
         setcartItem(cpExsitingCartItems)
@@ -51,8 +54,27 @@ function ShoppingCartProvider({ children }) {
     }
     useEffect(() => {
         fetchListofProduct()
+        setcartItem(JSON.parse(localStorage.getItem('cartItem') || []))
     }, [])
+
     console.log(cartItem);
+    function handleRemoveFromCart(getPrdductDetails, isFullyRemoveFromCart) {
+        let cpExsitingCartItems = [...cartItem]
+        const findIndexOfCurrentItem = cpExsitingCartItems.findIndex(item => item.id === getPrdductDetails.id)
+
+        if (isFullyRemoveFromCart) {
+            cpExsitingCartItems.splice(findIndexOfCurrentItem, 1)
+        }
+        else {
+            cpExsitingCartItems[findIndexOfCurrentItem] = {
+                ...cpExsitingCartItems[findIndexOfCurrentItem],
+                quantity: cpExsitingCartItems[findIndexOfCurrentItem].quantity - 1,
+                totalPrice: (cpExsitingCartItems[findIndexOfCurrentItem].quantity - 1) * cpExsitingCartItems[findIndexOfCurrentItem].price
+            }
+        }
+        localStorage.setItem('cartItem', JSON.stringify(cpExsitingCartItems))
+        setcartItem(cpExsitingCartItems)
+    }
     // always keep if condtion before retrun
     if (loading) return <h1>Loading Data. Plese Wait...</h1>
 
@@ -63,7 +85,8 @@ function ShoppingCartProvider({ children }) {
         productDetails,
         setproductDetails,
         handleAddToCart,
-        cartItem
+        cartItem,
+        handleRemoveFromCart
     }}>{children}</ShoppingCartContext.Provider>)
 }
 

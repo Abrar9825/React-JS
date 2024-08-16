@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { ShoppingCartContext } from "../../context";
 
 export default function ProductDetails() {
     const { id } = useParams()
-    const navigate = useNavigate()
-    const { productDetails, setproductDetails, setloading, loading, handleAddToCart } = useContext(ShoppingCartContext)
+    const { productDetails, setproductDetails, setloading, loading, handleAddToCart, cartItem } = useContext(ShoppingCartContext)
     console.log(id);
     async function fetchProductDetails() {
         const apiResponse = await fetch(`https://dummyjson.com/products/${id}`)
@@ -59,7 +58,7 @@ export default function ProductDetails() {
                         <p className="text-2xl font-extrabold">${productDetails?.price}</p>
                     </div>
                     <div>
-                        <button onClick={() => handleAddToCart(productDetails)} className="min-w-[200px] px-4  py-3 border border-[#333] bg-transparent text-sm font-semibold rounded mt-5">Add To Cart</button>
+                        <button disabled={productDetails ? cartItem?.findIndex(item => item.id === productDetails.id) > -1 : false} onClick={() => handleAddToCart(productDetails)} className="disabled:opacity-50 min-w-[200px] px-4  py-3 border border-[#333] bg-transparent text-sm font-semibold rounded mt-5">Add To Cart</button>
                     </div>
                 </div>
             </div>
