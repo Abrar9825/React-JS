@@ -1,0 +1,5 @@
+first make a project on firebase website 
+
+2.after Createing project click on web 
+
+3.make a webapp and get Credentials From there 
